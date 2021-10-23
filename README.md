@@ -4,9 +4,10 @@
 Saber Interactive:
 
 Реализуйте функции сериализации и десериализации двусвязного списка, заданного следующим образом:
+
     class ListNode
     {
- public ListNode Previous;
+        public ListNode Previous;
         public ListNode Next;
         public ListNode Random; // произвольный элемент внутри списка
         public string Data;
