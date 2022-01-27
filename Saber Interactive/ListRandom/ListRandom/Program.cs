@@ -9,18 +9,18 @@ namespace ListRandom
         {
             try
             {
-                ListRandom listRandom = GetListRandom(10);
+                ListRandomEl listRandomEl = GetListRandom(10);
 
                 FileStream fs = new FileStream("Result.txt", FileMode.OpenOrCreate);
-                listRandom.Serialize(fs);
+                listRandomEl.Serialize(fs);
 
-                ListRandom newListRandom = new ListRandom();
+                ListRandomEl newListRandomEl = new ListRandomEl();
 
                 fs = new FileStream("Result.txt", FileMode.Open);
-                newListRandom.Deserialize(fs);
+                newListRandomEl.Deserialize(fs);
 
                 fs = new FileStream("NewResult.txt", FileMode.OpenOrCreate);
-                newListRandom.Serialize(fs);
+                newListRandomEl.Serialize(fs);
                 FileCompare("Result.txt", "NewResult.txt");
             }
             catch (Exception e)
@@ -34,7 +34,7 @@ namespace ListRandom
             }
         }
 
-        private static ListRandom GetListRandom(int count)
+        private static ListRandomEl GetListRandom(int count)
         {
             ListNode head = new ListNode();
             head.Data = GetRandomString();
@@ -52,12 +52,12 @@ namespace ListRandom
                 temp = temp.Next;
             }
 
-            ListRandom listRandom = new ListRandom();
-            listRandom.Head = head;
-            listRandom.Tail = tail;
-            listRandom.Count = count;
+            ListRandomEl listRandomEl = new ListRandomEl();
+            listRandomEl.Head = head;
+            listRandomEl.Tail = tail;
+            listRandomEl.Count = count;
 
-            return listRandom;
+            return listRandomEl;
         }
 
         private static ListNode AddNode(ListNode node)
@@ -79,14 +79,14 @@ namespace ListRandom
         private static ListNode GetRandNode(ListNode head, int length)
         {
             Random rand = new Random();
-            int ramdNodeNum = rand.Next(0, length);
+            int randNodeNum = rand.Next(0, length);
 
             ListNode randNode = head;
 
-            while (ramdNodeNum > 0)
+            while (randNodeNum > 0)
             {
                 randNode = randNode.Next;
-                ramdNodeNum--;
+                randNodeNum--;
             }
 
             return randNode;
