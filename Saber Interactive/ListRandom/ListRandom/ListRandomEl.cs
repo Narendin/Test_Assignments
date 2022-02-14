@@ -39,12 +39,18 @@ namespace ListRandom
             var nodes = GetNodeListByDeserialize(strArray);
             CheckNodes(nodes);
 
-            foreach (var node in nodes)
+            for (int i = 0; i < nodes.Count; i++)
             {
-                var randNodeNum = int.Parse(node.Data.Split(':')[1]);
-                node.Random = randNodeNum >= 0 ? nodes[randNodeNum] : null;
-                node.Data = node.Data.Split(':')[0];
+                nodes[i] = ParseNode(nodes[i], nodes); // тут подумать, как-то кривовато
             }
+        }
+
+        private ListNode ParseNode(ListNode node, List<ListNode> nodes)
+        {
+            var randNodeNum = int.Parse(node.Data.Split(':')[1]);
+            node.Random = randNodeNum >= 0 ? nodes[randNodeNum] : null;
+            node.Data = node.Data.Split(':')[0];
+            return node;
         }
 
         private void CheckStream(Stream s)
